@@ -20,42 +20,49 @@ void main() {
     dataSource = RemoteDataSourceImpl(client: mockHttpClient);
   });
 
-  group('getCurrentWeather', () {
-    const tCityName = "Sinjai";
-    final tWeatherModel = WeatherModel.fromJson(
-      jsonDecode(readJson("helpers/dummy_data/dummy_weather_response.json")),
-    );
-
-    test(
-      'should return weather model when the response code is 200',
-      () async {
-        when(
-          mockHttpClient.get(Uri.parse(Urls.currentWeatherByName(tCityName))),
-        ).thenAnswer(
-          (_) async => http.Response(
-            readJson("helpers/dummy_data/dummy_weather_response.json"),
-            200,
-          ),
-        );
-
-        final result = await dataSource.getCurrentWeather(tCityName);
-
-        expect(result, equals(tWeatherModel));
-      },
-    );
-
-    test(
-        'should throw a server exception when the response code is 404 or other',
-        () async {
-      when(
-        mockHttpClient.get(Uri.parse(Urls.currentWeatherByName(tCityName))),
-      ).thenAnswer(
-        (_) async => http.Response('Not Found', 404),
+  group(
+    'getCurrentWeather',
+    () {
+      const tCityName = "Sinjai";
+      final tWeatherModel = WeatherModel.fromJson(
+        jsonDecode(readJson("helpers/dummy_data/dummy_weather_response.json")),
       );
 
-      final call = dataSource.getCurrentWeather(tCityName);
+      test(
+        'should return weather model when the response code is 200',
+        () async {
+          when(
+            mockHttpClient.get(
+              Uri.parse(Urls.currentWeatherByName(tCityName)),
+            ),
+          ).thenAnswer(
+            (_) async => http.Response(
+              readJson("helpers/dummy_data/dummy_weather_response.json"),
+              200,
+            ),
+          );
 
-      expect(call, throwsA(isA<ServerException>()));
-    });
-  });
+          final result = await dataSource.getCurrentWeather(tCityName);
+
+          expect(result, equals(tWeatherModel));
+        },
+      );
+
+      test(
+          'should throw a server exception when the response code is 404 or other',
+          () async {
+        when(
+          mockHttpClient.get(
+            Uri.parse(Urls.currentWeatherByName(tCityName)),
+          ),
+        ).thenAnswer(
+          (_) async => http.Response('Not Found', 404),
+        );
+
+        final call = dataSource.getCurrentWeather(tCityName);
+
+        expect(call, throwsA(isA<ServerException>()));
+      });
+    },
+  );
 }
