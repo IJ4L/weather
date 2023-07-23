@@ -1,0 +1,44 @@
+{
+    "coord": {
+        "lon": 120.253,
+        "lat": -5.1241
+    },
+    "weather": [
+        {
+            "id": 804,
+            "main": "Clouds",
+            "description": "overcast clouds",
+            "icon": "04n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 297.17,
+        "feels_like": 297.79,
+        "temp_min": 297.17,
+        "temp_max": 297.17,
+        "pressure": 1013,
+        "humidity": 83,
+        "sea_level": 1013,
+        "grnd_level": 1012
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 1.51,
+        "deg": 226,
+        "gust": 2.41
+    },
+    "clouds": {
+        "all": 98
+    },
+    "dt": 1690123204,
+    "sys": {
+        "country": "ID",
+        "sunrise": 1690063757,
+        "sunset": 1690106476
+    },
+    "timezone": 28800,
+    "id": 1626895,
+    "name": "Sinjai",
+    "cod": 200
+}
